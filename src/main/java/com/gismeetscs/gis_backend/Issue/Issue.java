@@ -1,4 +1,4 @@
-package com.gismeetscs.gis_backend.model;
+package com.gismeetscs.gis_backend.Issue;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,11 +12,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity(name="issue")
-public class IssueDTO {
+public class Issue {
     @Id
-    private int issueId;
+    private int issue_id;
 
-    private int userNum;
+    private int user_id;
 
     private String subject;
 
@@ -30,6 +30,6 @@ public class IssueDTO {
     private double latitude;
 
     private double longitude;
-    
-    private int extraScore;
+
+    private int extra_score;
 }

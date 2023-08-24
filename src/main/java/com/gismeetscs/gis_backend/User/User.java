@@ -1,4 +1,4 @@
-package com.gismeetscs.gis_backend.model;
+package com.gismeetscs.gis_backend.User;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -10,13 +10,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity(name="user")
-public class UserDTO {
+public class User {
     @Id
-    private int userNum;
+    private int user_id;
 
     private String email;
 
-    private String userName;
+    private String user_name;
 
     private String nickname;
 
@@ -24,9 +24,9 @@ public class UserDTO {
 
     private int status;
 
-    private String jwtToken;
+    private String jwt_token;
 
-    private int numUpload;
-    
-    private int numIssue;
+    private int num_upload;
+
+    private int num_issue;
 }

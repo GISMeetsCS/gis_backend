@@ -1,4 +1,4 @@
-package com.gismeetscs.gis_backend.model;
+package com.gismeetscs.gis_backend.Photo;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -11,25 +11,25 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity(name="photo")
-public class PhotoDTO {
+public class Photo {
     @Id
-    private long photoId;
+    private long photo_id;
 
     private double latitude;
 
     private double longitude;
 
-    private int userNum;
+    private int user_id;
 
-    private int greenArea;
+    private int green_area;
 
-    private int numTrees;
+    private int num_trees;
 
-    private int verticalDiversity;
+    private int vertical_diversity;
 
-    private byte originalFile;
+    private byte original_file;
 
-    private byte entityFile;
-    
-    private Timestamp uploadTime;
+    private byte entity_file;
+
+    private Timestamp upload_time;
 }
