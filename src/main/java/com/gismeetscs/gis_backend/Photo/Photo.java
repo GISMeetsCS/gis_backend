@@ -1,5 +1,8 @@
 package com.gismeetscs.gis_backend.Photo;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import java.security.Timestamp;
@@ -13,23 +16,34 @@ import lombok.Setter;
 @Entity(name="photo")
 public class Photo {
     @Id
-    private long photo_id;
+    @Column(name="photo_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long photoId;
 
+    @Column(name="latitude")
     private double latitude;
 
+    @Column(name="longitude")
     private double longitude;
 
-    private int user_id;
+    @Column(name="user_id")
+    private int userId;
 
-    private int green_area;
+    @Column(name="green_area")
+    private int greenArea;
 
-    private int num_trees;
+    @Column(name="num_trees")
+    private int numTrees;
 
-    private int vertical_diversity;
+    @Column(name="vertical_diversity")
+    private int verticalDiversity;
 
-    private byte original_file;
+    @Column(name="original_file")
+    private byte originalFile;
 
-    private byte entity_file;
+    @Column(name="entity_file")
+    private byte entityFile;
 
-    private Timestamp upload_time;
+    @Column(name="upload_time")
+    private Timestamp uploadTime;
 }

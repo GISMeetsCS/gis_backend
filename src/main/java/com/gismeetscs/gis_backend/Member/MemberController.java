@@ -1,4 +1,4 @@
-package com.gismeetscs.gis_backend.Photo;
+package com.gismeetscs.gis_backend.Member;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,36 +10,38 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 
-@Api(tags="Photo")
+
+@Api(tags="Member")
 @RestController
-@RequestMapping(value = "photo")
-public class PhotoController {
-
+@RequestMapping(value = "member")
+public class MemberController {
+ 
     @Autowired
-    PhotoRepository photoRepository;
+    MemberRepository memberRepository;
 
-    @PostMapping(value = "upload")
-    public boolean upload(Photo photo){
-        photoRepository.save(photo);
+    @PostMapping(value = "create")
+    public boolean create(Member member){
+        memberRepository.save(member);
         return true;
     }
 
     @GetMapping(value = "find")
-    public Photo find(long photoId){
-        Photo photo = photoRepository.findById(photoId).get();
-        return photo;
+    public Member find(int memberId){
+        Member member = memberRepository.findById(memberId).get();
+        return member;
     }
 
     @PutMapping(value = "modify")
-    public boolean modify(Photo photo){
-        photoRepository.save(photo);
+    public boolean modify(Member member){
+        memberRepository.save(member);
         return true;
     }
 
     @DeleteMapping(value = "delete")
-    public boolean delete(Photo photo){
-        photoRepository.delete(photo);
+    public boolean delete(Member member){
+        memberRepository.delete(member);
         return true;
     }
-    
+
+
 }
