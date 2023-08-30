@@ -11,31 +11,31 @@ import io.swagger.annotations.Api;
 
 @Api(tags="Issue")
 @RestController
-@RequestMapping(value = "issue")
+@RequestMapping(value = "issues")
 public class IssueController {
     
     @Autowired
     IssueRepository issueRepository;
 
-    @PostMapping(value = "create")
+    @PostMapping
     public boolean create(Issue issue){
         issueRepository.save(issue);
         return true;
     }
 
-    @GetMapping(value = "find")
+    @GetMapping
     public Issue find(int issueId){
         Issue issue = issueRepository.findById(issueId).get();
         return issue;
     }
 
-    @PutMapping(value = "modify")
+    @PutMapping
     public boolean modify(Issue issue){
         issueRepository.save(issue);
         return true;
     }
 
-    @DeleteMapping(value = "delete")
+    @DeleteMapping
     public boolean delete(Issue issue){
         issueRepository.delete(issue);
         return true;

@@ -12,31 +12,31 @@ import io.swagger.annotations.Api;
 
 @Api(tags="Photo")
 @RestController
-@RequestMapping(value = "photo")
+@RequestMapping(value = "photos")
 public class PhotoController {
 
     @Autowired
     PhotoRepository photoRepository;
 
-    @PostMapping(value = "upload")
+    @PostMapping
     public boolean upload(Photo photo){
         photoRepository.save(photo);
         return true;
     }
 
-    @GetMapping(value = "find")
+    @GetMapping
     public Photo find(long photoId){
         Photo photo = photoRepository.findById(photoId).get();
         return photo;
     }
 
-    @PutMapping(value = "modify")
+    @PutMapping
     public boolean modify(Photo photo){
         photoRepository.save(photo);
         return true;
     }
 
-    @DeleteMapping(value = "delete")
+    @DeleteMapping
     public boolean delete(Photo photo){
         photoRepository.delete(photo);
         return true;
