@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+
+import org.hibernate.annotations.Type;
 
 import lombok.Data;
 import lombok.Getter;
@@ -17,7 +20,7 @@ public class PhotoEntity {
     @Id
     @Column(name="photo_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long photoId;
+    private int photoId;
 
     @Column(name="pixel_x")
     private int pixelX;
@@ -27,4 +30,9 @@ public class PhotoEntity {
 
     @Column(name="type")
     private int type;
+
+    @Lob
+    @Column(name="entity_file")
+    @Type(type="org.hibernate.type.BinaryType")
+    private byte[] entityFile;
 }

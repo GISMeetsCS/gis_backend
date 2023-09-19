@@ -4,13 +4,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
-import java.security.Timestamp;
-import lombok.Data;
+import org.hibernate.annotations.Type;
+
 import lombok.Getter;
 import lombok.Setter;
 
-@Data
 @Getter
 @Setter
 @Entity(name="photo")
@@ -18,7 +18,7 @@ public class Photo {
     @Id
     @Column(name="photo_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long photoId;
+    private int photoId;
 
     @Column(name="latitude")
     private double latitude;
@@ -26,8 +26,8 @@ public class Photo {
     @Column(name="longitude")
     private double longitude;
 
-    @Column(name="user_id")
-    private int userId;
+    @Column(name="member_id")
+    private int memberId;
 
     @Column(name="green_area")
     private int greenArea;
@@ -38,12 +38,8 @@ public class Photo {
     @Column(name="vertical_diversity")
     private int verticalDiversity;
 
+    @Lob
     @Column(name="original_file")
-    private byte originalFile;
-
-    @Column(name="entity_file")
-    private byte entityFile;
-
-    @Column(name="upload_time")
-    private Timestamp uploadTime;
+    @Type(type="org.hibernate.type.BinaryType")
+    private byte[] originalFile;
 }
