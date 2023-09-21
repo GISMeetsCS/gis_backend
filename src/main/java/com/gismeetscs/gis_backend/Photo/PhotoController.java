@@ -25,7 +25,11 @@ public class PhotoController {
     PhotoService photoService;
 
     @PostMapping
-    public boolean upload(Photo photo, @RequestParam("file") MultipartFile file) throws IOException{
+    public boolean upload(@RequestParam("memberId") int memberId,@RequestParam("lat") double lat, @RequestParam("lon") double lon, @RequestParam("file") MultipartFile file) throws IOException{
+        Photo photo = new Photo();
+        photo.setLatitude(lat);
+        photo.setLongitude(lon);
+        photo.setMemberId(memberId);
         photoService.upload(photo, file);
         return true;
     }
