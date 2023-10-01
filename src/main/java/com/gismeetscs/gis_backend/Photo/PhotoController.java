@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.gismeetscs.gis_backend.Issue.Issue;
+
 import io.swagger.annotations.Api;
 
 @Api(tags="Photo")
@@ -40,5 +42,11 @@ public class PhotoController {
         return ResponseEntity.status(HttpStatus.OK)
                 .contentType(MediaType.valueOf("image/png"))
                 .body(downloadImage);
+    }
+
+    @GetMapping("/locInfo/{lat}/{lng}")
+    public Photo find(@PathVariable("lat")long lat, @PathVariable("lng")long lng){
+        Photo photo = photoService.getLocInfo(lat, lng);
+        return photo;
     }
 }
