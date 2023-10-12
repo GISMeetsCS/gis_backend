@@ -32,12 +32,7 @@ public class PhotoService {
         return PhotoUtils.decompressImage(imageData.getOriginalFile());
     }
 
-    @Query(value = "SELECT *\r\n" + //
-            "FROM photo limit 1\r\n" + //
-            "WHERE ST_DistanceSphere(\r\n" + //
-            "    ST_MakePoint(?2, ?1),\r\n" + //
-            "    ST_MakePoint(photo.latitude , photo.longitude)\r\n" + //
-            ") <= 10;\r\n" + //
-            "order by photo.upload_time", nativeQuery = true)
-    public Photo getLocInfo(long lat, long lng){};
+    public Photo getLocInfo(float lat, float lng){
+        return photoRepository.getLocInfo(lat, lng);
+    }
 }
