@@ -1,8 +1,8 @@
 package com.gismeetscs.gis_backend.Photo;
 
 import java.io.IOException;
+import java.util.List;
 
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,11 +16,23 @@ public class PhotoService {
     
     private final PhotoRepository photoRepository;
 
-    public String upload(Photo photo, MultipartFile file) throws IOException {
-        log.info("upload file: {}", file);
-        photo.setOriginalFile(PhotoUtils.compressImage(file.getBytes()));
-        photoRepository.save(photo);
-        return null;
+    public boolean upload(Photo photo, MultipartFile file) throws IOException {
+        boolean isSuccess = false;
+        try{
+
+            Photo p = photoRepository.getLocInfo(photo.getLatitude(), photo.getLongitude());
+            if(p != null)
+                return isSuccess;
+
+            log.info("upload file: {}", file);
+            photo.setOriginalFile(PhotoUtils.compressImage(file.getBytes()));
+            photoRepository.save(photo);
+            isSuccess = true;
+        }catch(Exception e){
+            log.info("upload err");
+        }
+        
+        return isSuccess;
     }
 
 	// 이미지 파일로 압축하기
@@ -32,7 +44,11 @@ public class PhotoService {
         return PhotoUtils.decompressImage(imageData.getOriginalFile());
     }
 
-    public Photo getLocInfo(float lat, float lng){
+    public Photo getLocInfo(double lat, double lng){
         return photoRepository.getLocInfo(lat, lng);
+    }
+
+    public List<Photo> getAll(){
+        return photoRepository.findAll();
     }
 }

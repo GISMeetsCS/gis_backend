@@ -1,6 +1,8 @@
 package com.gismeetscs.gis_backend.Photo;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,8 +32,7 @@ public class PhotoController {
         photo.setLatitude(lat);
         photo.setLongitude(lon);
         photo.setMemberId(memberId);
-        photoService.upload(photo, file);
-        return true;
+        return photoService.upload(photo, file);
     }
 
     @GetMapping("/{photoId}")
@@ -43,8 +44,17 @@ public class PhotoController {
     }
 
     @GetMapping("/locInfo/{lat}/{lng}")
-    public Photo find(@PathVariable("lat")float lat, @PathVariable("lng")float lng){
+    public Photo find(@PathVariable("lat")double lat, @PathVariable("lng")double lng){
         Photo photo = photoService.getLocInfo(lat, lng);
         return photo;
+    }
+    
+    @GetMapping("/location/list")
+    public List<Location> getAllLocation(){
+        List<Location> locations = new ArrayList<>();
+        List<Photo> photos = photoService.getAll();
+        for(Photo photo : photos)
+            locations.add(new Location(photo.getLatitude(), photo.getLongitude()));
+        return locations;
     }
 }

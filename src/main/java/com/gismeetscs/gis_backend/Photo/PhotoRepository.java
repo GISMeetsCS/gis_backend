@@ -11,6 +11,6 @@ public interface PhotoRepository extends JpaRepository<Photo, Integer>{
             "WHERE ST_DWithin(\r\n" + //
             "ST_Transform(ST_SetSRID(ST_MakePoint(?2, ?1), 4326), 3857),\r\n" + //
             "ST_Transform(ST_SetSRID(ST_MakePoint(photo.longitude, photo.latitude), 4326), 3857),10)\r\n" + //
-            "order by photo.upload_time;", nativeQuery = true)
-    Photo getLocInfo(float lat, float lng);
+            "order by photo.upload_time limit 1;", nativeQuery = true)
+    Photo getLocInfo(double lat, double lng);
 }
